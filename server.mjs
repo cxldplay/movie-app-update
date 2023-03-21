@@ -15,6 +15,8 @@ res.status(200).send('Hello World').end();
 
 //server.use("/api/random", randomRouter);
 
+app.anyMethod(path, function)
+
 server.listen(server.get('port'), function () {
 console.log('server running', server.get('port'));
 });
