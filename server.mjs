@@ -3,7 +3,7 @@ import * as pg from 'pg' // remove (til database)
 import apiEndpoints from './public/js/apiEndpoints.mjs';
 import encryptionAPIRoute from './routes/encryptionAPI.mjs';
 import userAPIRoute from './routes/userAPI.mjs'
-import Dictionary from './public/Dictionary.mjs';
+import Dictionary from './public/language/Dictionary.mjs';
 
 const {API_ENDPOINTS, USER_ENDPOINT}  = apiEndpoints;
 
