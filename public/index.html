@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Film App</title>
+
+    <style type="text/css">
+        * {
+
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #111111;
+            color: #000;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+
+        }
+
+        /* top-bar navigation hvor søkefeltet er inkludert */
+
+
+        .topnav {
+            
+            background: #CE3737;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #111111;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a.active {
+            background-color: #111111;
+            color: black;
+        }
+
+        .topnav .search-container {
+            float: right;
+        }
+
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+
+        .topnav .search-container button {
+            float: right;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #CE3737;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            .topnav .search-container {
+                float: none;
+
+            }
+
+            .topnav a,
+            .topnav input[type=text],
+            .topnav .search-container button {
+               
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+
+            }
+
+            .topnav input[type=text] {
+                border: 1px solid #000;
+            }
+        }
+
+        .topnav a:hover {
+            border-bottom: 3px solid #1A0707;
+        }
+
+        .topnav a.active {
+            border-bottom: 3px solid #1A0707;
+        }
+
+        /* selve bildene og teksten under bildene, inkl. header bildet. */
+
+        .featured-movie {
+            position: relative;
+        }
+
+        .cover {
+            width: 100%;
+            display: block;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .genre {
+            color: #999;
+            font-size: 12px;
+        }
+
+        img {
+            width: 130px;
+            height: 195px;
+            margin: 0 auto 5px auto;
+            cursor: pointer;
+        }
+
+        .list {
+            margin: 0px;
+            margin-right: 0;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        li {
+            flex: 0 0 130px;
+            padding-bottom: 20px;
+            padding-top: 15px;
+            margin-right: 20px;
+            position: relative;
+            list-style: none
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+        }
+
+
+        h2 {
+            color: white;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        /* hover-box over bildene */
+
+        .container {
+            position: relative;
+            width: 100%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            right: 0;
+            height: 78%;
+            width: 81%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #CE3737;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .boxtext {
+            color: white;
+            font-size: 8px;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+
+        /* navigation-bar på bunnen av nettsiden */
+
+
+        .navigation-bar {
+            background-color: #CE3737;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation-bar .list-items {
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+
+        .navigation-bar .list-items .pointer {
+            position: absolute;
+            left: 0px;
+            height: 100%;
+            width: 4.5rem;
+            z-index: 0;
+            transition: all 0.2s linear;
+        }
+
+        .navigation-bar .list-items .pointer::before,
+        .navigation-bar .list-items .pointer::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+        }
+
+        .navigation-bar .list-items .pointer::before {
+            top: 0;
+            border-bottom: 8px solid var(--main-color);
+            border-radius: 0 0 30px 30px;
+        }
+
+        .navigation-bar .list-items .pointer::after {
+            bottom: 0;
+            border-top: 8px solid var(--main-color);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .navigation-bar .list-items .item {
+            flex: 1 1 0px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navigation-bar .list-items .item .link {
+            display: inline-block;
+            height: 4rem;
+            width: 4.5rem;
+            line-height: 4.5;
+            text-align: center;
+            color: #000;
+        }
+
+        /* fargen på stjernene som er checked/rated i hover-boxen */
+
+        .checked {
+            color: orange;
+        }
+
+        /* customized scrollbar */
+
+        ::-webkit-scrollbar {
+            width: 17px;
+            height: 17px;
+        }
+
+        ::-webkit-scrollbar {
+            background-color: black;
+        }
+
+        ::-webkit-scrollbar-track {
+            border: 8px solid #111111;
+            background-color: rgb(230, 230, 230);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border: 8px solid #111111;
+            background-color: rgb(144, 144, 144);
+            min-height: 24px;
+            min-width: 24px;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- authentication, har ikke helt funnet ut hvordan den fungerer. -->
+
+    <div id="authenticateUI" class="hidden">
+        <p>Register or Authenticate</p>
+        <input type="email" id="userEmail"><button id="userAuthButton">send</button>
+    </div>
+
+    <!-- Her vises top-navigation og linker innenfor den -->
+
+    <div class="featured-movie">
+        <img class="cover" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/backdrop_ggwxvq_1.jpg" alt=""
+            class="cover" />
+
+        <div class="topnav">
+            <a class="active" href="#home">Home</a>
+            <a href="#Reviews">Reviews</a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Her har du alle filmene som er inkludert. -->
+
+        <div style="padding-left:16px">
+            <div style="padding-top:15px">
+                <h2>Latest</h2>
+                <ul class="list">
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BODBjM2M4YTQtNmJlMS00MGU2LWI4ZGYtZTA1MzdmZDAyMjFkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">In the next installment, the survivors of the Ghostface killings leave Woodsboro behind and start a fresh chapter in New York City.</div>
+                                </div>
+                            </div>
+                            <p class="title">SCREAM VI</p>
+                            <p class="genre">Slasher, Horror</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMTJiMmE5YWItOWZjYS00YTg0LWE0MTYtMzg2ZTY4YjNkNDEzXkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">In 1979, a group of young filmmakers set out to make an adult film in rural Texas, but when their reclusive, elderly hosts catch them in the act, the cast find themselves fighting for their lives.</div>
+                                </div>
+                            </div>
+                            <p class="title">X</p>
+                            <p class="genre">Horror</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMzdjNjI5MmYtODhiNS00NTcyLWEzZmUtYzVmODM5YzExNDE3XkEyXkFqcGdeQXVyMTAyMjQ3NzQ1._V1_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">A young couple travels to a remote island to eat at an exclusive restaurant where the chef has prepared a lavish menu, with some shocking surprises.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="title">The Menu</p>
+                            <p class="genre">Comedy, Horror, Thriller</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BM2I0ZDcyYzItMGEyNi00YWVhLTlmNTQtOWVlYjE1ZGVhNWM0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Lydia Tár, widely considered one of the greatest living composer-conductors and the very first female director of a major German orchestra.</div>
+                                </div>
+                            </div>
+                        <p class="title">TÁR</p>
+                        <p class="genre">Husic, Drama</p>
+                    </li>
+                </ul>
+
+
+                <h2>Recommended</h2>
+                <ul class="list">
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BN2M3Y2NhMGYtYjUxOS00M2UwLTlmMGUtYzY4MzFlNjZkYzY2XkEyXkFqcGdeQXVyODc0OTEyNDU@._V1_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">A woman staying at an Airbnb discovers that the house she has rented is not what it seems.</div>
+                                </div>
+                            </div>
+                        <p class="title">Barbarian</p>
+                        <p class="genre">Horror, Mystery</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX1000_.jp"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led.</div>
+                                </div>
+                            </div>
+                        <p class="title">EEAAO</p>
+                        <p class="genre">Comedy, Drama</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://static.posters.cz/image/1300/plakater/divergent-one-sheet-i20818.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">Divergent</p>
+                        <p class="genre">Action, Sci-Fi</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://image.tmdb.org/t/p/original/5Y0AINkH7xDqmuxJXUQdPbtyrub.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">The Banshees of Inisherin</p>
+                        <p class="genre">Comedy, Drama</p>
+                    </li>
+                </ul>
+
+
+                <h2>Friends</h2>
+                <ul class="list">
+                    <li>
+                        <div class="container">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMTk0MDQ3MzAzOV5BMl5BanBnXkFtZTgwNzU1NzE3MjE@._V1_.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">Gone Girl</p>
+                        <p class="genre">Thriller, Mystery</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://image.tmdb.org/t/p/original/ode14q7WtDugFDp78fo9lCsmay9.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">The Maze Runner</p>
+                        <p class="genre">Action, Sci-fi</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://image.tmdb.org/t/p/original/xwbFEPubG4wroLDZdmTWRGNnnWf.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">Wild Child</p>
+                        <p class="genre">Comedy, Romance</p>
+                    </li>
+                    <li>
+                        <div class="container">
+                            <img src="https://www.nfkino.no/sites/nfkino.no/files/movie-posters/UIP20201219_62507.jpg"
+                                alt="Avatar">
+                            <div class="overlay">
+                                <div style="padding-top:15px">
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star checked" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <span class="fa fa-star" alt="" class="boxtext"></span>
+                                    <div class="boxtext">Hello World</div>
+                                </div>
+                            </div>
+                        <p class="title">Freaky</p>
+                        <p class="genre">Horror, Slasher</p>
+                    </li>
+                </ul>
+
+
+                <div class="container">
+                    <h1 id="description">Show English Text</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Language
+                            Option
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li onclick="toggleLanguage('English')"><a href="#">English</a></li>
+                            <li onclick="toggleLanguage('Norsk')"><a href="#">Norsk</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                </div>
+
+
+
+
+                <nav class="navigation-bar">
+                    <ul class="list-items">
+                        <span class="pointer"></span>
+                        <li class="item active">
+                            <a class="link" href="#">
+                                <i class="fa fa-home fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a class="link" href="#">
+                                <i class="fa fa-search fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a class="link" href="#">
+                                <i class="fa fa-heart fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a class="link" href="#">
+                                <i class="fa fa-bell fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a class="link" href="#">
+                                <i class="fa fa-user fa-2x"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+
+
+
+                <script>
+                    const navigation_items_elms = document.querySelectorAll(
+                        ".navigation-bar .list-items .item"
+                    );
+                    const navigation_pointer = document.querySelector(".navigation-bar .pointer");
+
+                    navigation_items_elms.forEach((item, index) => {
+                        item.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            navigation_items_elms.forEach((itm) => itm.classList.remove("active"));
+                            item.classList.add("active");
+
+                            const parentWidth = item.parentElement.clientWidth;
+                            const lefPercent = (parentWidth / navigation_items_elms.length) * index;
+                            navigation_pointer.style.left = lefPercent + "px";
+                        });
+                    });
+
+
+                    function toggleLanguage(language) {
+                        let description = document.getElementById("description");
+                        if (language === "Norsk") {
+                            description.innerHTML = "Vis norsk tekst";
+                        } else {
+                            description.innerHTML = "Show English Text";
+                        }
+                    }
+                </script>
+
+</body>
+
+
+
+</html>
