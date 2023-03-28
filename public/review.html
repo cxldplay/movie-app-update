@@ -617,12 +617,6 @@ button#submit-review-btn {
 </head>
 
 <body>
-    <!-- authentication, har ikke helt funnet ut hvordan den fungerer. -->
-
-    <div id="authenticateUI" class="hidden">
-        <p>Register or Authenticate</p>
-        <input type="email" id="userEmail"><button id="userAuthButton">send</button>
-    </div>
 
     <!-- Her vises top-navigation og linker innenfor den her -->
 
@@ -685,156 +679,11 @@ button#submit-review-btn {
 </div>
 <div class="modal-overlay"></div>
 
-
-
-<div class="sectionText">Recent Reviews</div>
-<div class="reviews-grid">
-  
-  <div class="review">
-    <h4>John</h4>
-    <p>Book: Harry Potter and the Philosopher's Stone</p>
-    <p>Author: J.K. Rowling</p>
-    <p>Rating: 4.5/5</p>
-    <p>Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <div class="review">
-    <h4>Jane</h4>
-    <p>Book: The Lord of the Rings</p>
-    <p>Author: J.R.R. Tolkien</p>
-    <p>Rating: 5/5</p>
-    <p>Text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
-  <div class="review">
-    <h4>Bob</h4>
-    <p>Book: To Kill a Mockingbird</p>
-    <p>Author: Harper Lee</p>
-    <p>Rating: 4/5</p>
-    <p>Text: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
-  
-</div> 
-
-               
-
-
-                <!-- Nederste navigation bar, kun for utseende -->
-
-
-
-                <nav class="navigation-bar">
-                    <ul class="list-items">
-                        <span class="pointer"></span>
-                        <li class="item active">
-                            <a class="link" href="#">
-                                <i class="fa fa-home fa-2x"></i>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="link" href="#">
-                                <i class="fa fa-search fa-2x"></i>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <a class="link" href="#">
-                                <i class="fa fa-heart fa-2x"></i>
-                            </a>
-
-                        </li>
-                        <li class="item">
-                            <a class="link" href="#">
-                                <i class="fa fa-bell fa-2x"></i>
-                            </a>
-                        </li>
-
-                        <!-- login form -->
-
-                        <button onclick="document.getElementById('id01').style.display='block'"
-                            style="width:auto;"><i class="fa fa-user fa-2x"></i></button>
-
-                        <div id="id01" class="modal">
-
-                            <form class="modal-content animate" action="/action_page.php" method="post">
-                                <div class="imgcontainer">
-                                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                                        title="Close Modal">&times;</span>
-                                </div>
-
-                                <div class="container">
-                                    <label for="uname"><b>Username</b></label>
-                                    <input type="text" placeholder="Enter Username" name="uname" required>
-
-                                    <label for="psw"><b>Password</b></label>
-                                    <input type="password" placeholder="Enter Password" name="psw" required>
-
-                                    <button type="submit">Login</button>
-                                    <label>
-                                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                                    </label>
-                                </div>
-
-                                <div class="container" style="background-color:#ddd">
-                                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                        class="cancelbtn">Cancel</button>
-                                    <span class="psw">Forgot <a href="#">password?</a></span>
-                                </div>
-                            </form>
-                        </div>
-                    </ul>
-                </nav>
-
-
+   
 
 
                 <script>
-                    // her er scriptet for språk // 
-
-
-                    function toggleLanguage(language) {
-                        let description = document.getElementById("description");
-                        if (language === "Norsk") {
-                            description.innerHTML = "Vis norsk tekst";
-                        } else {
-                            description.innerHTML = "Show english text";
-                        }
-                    }
-
-                    // scriptet for koden christian brukte //
-
-
-                    const changeLangBtn = document.getElementById("changeLanguageBtn");
-
-                    let language = "no"
-
-
-                    import Dictionary from "/Dictionary.mjs";
-                    const dic = new Dictionary(["test/lan/en.json", "test/lan/no.json"])
-                    await dic.setLanguage(language);
-
-                    const elementsToTranslate = document.querySelectorAll("[data-translate]");
-
-                    for (const element of elementsToTranslate) {
-                        const translateKey = element.getAttribute("data-translate");
-                        const translation = dic.get(translateKey);
-                        const target = element.getAttribute("data-target");
-
-                        if (target !== undefined) {
-                            element.setAttribute(target, translation);
-                        } else {
-                            element.innerText = translation;
-                        }
-                    }
-
-                    // login form //
-
-                    var modal = document.getElementById('id01');
-
-                    // When the user clicks anywhere outside of the modal, close it
-                    window.onclick = function (event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    }
-
+               
 
                     let focusedElementBeforeModal;
 const modal = document.getElementById('modal');
