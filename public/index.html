@@ -39,7 +39,7 @@
 
 
         .topnav {
-            
+
             background: #CE3737;
             border-radius: 3px;
             overflow: hidden;
@@ -94,7 +94,7 @@
             .topnav a,
             .topnav input[type=text],
             .topnav .search-container button {
-               
+
                 float: none;
                 display: block;
                 text-align: left;
@@ -280,12 +280,126 @@
             min-height: 24px;
             min-width: 24px;
         }
+
+
+        /* login */
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            color:#000;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #CE3737;
+            color: #fff;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #CE3737;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #ccc;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #ccc;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #ccc;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+                color: white;
+            }
+        }
     </style>
 
 </head>
 
 <body>
-<!-- authentication, har ikke helt funnet ut hvordan den fungerer. -->
+    <!-- authentication, har ikke helt funnet ut hvordan den fungerer. -->
 
     <div id="authenticateUI" class="hidden">
         <p>Register or Authenticate</p>
@@ -295,7 +409,8 @@
     <!-- Her vises top-navigation og linker innenfor den her -->
 
     <div class="featured-movie">
-        <img class="cover" src="https://64.media.tumblr.com/03e74d563061975f27c15b53bcc16cc1/tumblr_owi6uqxnvo1thvu4co2_500.jpg" alt=""
+        <img class="cover"
+            src="https://64.media.tumblr.com/03e74d563061975f27c15b53bcc16cc1/tumblr_owi6uqxnvo1thvu4co2_500.jpg" alt=""
             class="cover" />
 
         <div class="topnav">
@@ -326,7 +441,9 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">In the next installment, the survivors of the Ghostface killings leave Woodsboro behind and start a fresh chapter in New York City.</div>
+                                    <div class="boxtext">In the next installment, the survivors of the Ghostface
+                                        killings leave Woodsboro behind and start a fresh chapter in New York City.
+                                    </div>
                                 </div>
                             </div>
                             <p class="title">SCREAM VI</p>
@@ -343,7 +460,9 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">In 1979, a group of young filmmakers set out to make an adult film in rural Texas, but when their reclusive, elderly hosts catch them in the act, the cast find themselves fighting for their lives.</div>
+                                    <div class="boxtext">In 1979, a group of young filmmakers set out to make an adult
+                                        film in rural Texas, but when their reclusive, elderly hosts catch them in the
+                                        act, the cast find themselves fighting for their lives.</div>
                                 </div>
                             </div>
                             <p class="title">X</p>
@@ -360,7 +479,9 @@
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">A young couple travels to a remote island to eat at an exclusive restaurant where the chef has prepared a lavish menu, with some shocking surprises.</div>
+                                    <div class="boxtext">A young couple travels to a remote island to eat at an
+                                        exclusive restaurant where the chef has prepared a lavish menu, with some
+                                        shocking surprises.</div>
                                 </div>
                             </div>
                             <p class="title">The Menu</p>
@@ -377,11 +498,13 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
-                                    <div class="boxtext">Lydia Tár, widely considered one of the greatest living composer-conductors and the very first female director of a major German orchestra.</div>
+                                    <div class="boxtext">Lydia Tár, widely considered one of the greatest living
+                                        composer-conductors and the very first female director of a major German
+                                        orchestra.</div>
                                 </div>
                             </div>
-                        <p class="title">TÁR</p>
-                        <p class="genre">Husic, Drama</p>
+                            <p class="title">TÁR</p>
+                            <p class="genre">Husic, Drama</p>
                     </li>
                 </ul>
 
@@ -399,11 +522,12 @@
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">A woman staying at an Airbnb discovers that the house she has rented is not what it seems.</div>
+                                    <div class="boxtext">A woman staying at an Airbnb discovers that the house she has
+                                        rented is not what it seems.</div>
                                 </div>
                             </div>
-                        <p class="title">Barbarian</p>
-                        <p class="genre">Horror, Mystery</p>
+                            <p class="title">Barbarian</p>
+                            <p class="genre">Horror, Mystery</p>
                     </li>
                     <li>
                         <div class="container">
@@ -416,11 +540,13 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
-                                    <div class="boxtext">A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led.</div>
+                                    <div class="boxtext">A middle-aged Chinese immigrant is swept up into an insane
+                                        adventure in which she alone can save existence by exploring other universes and
+                                        connecting with the lives she could have led.</div>
                                 </div>
                             </div>
-                        <p class="title">EEAAO</p>
-                        <p class="genre">Comedy, Drama</p>
+                            <p class="title">EEAAO</p>
+                            <p class="genre">Comedy, Drama</p>
                     </li>
                     <li>
                         <div class="container">
@@ -433,16 +559,17 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">A world divided by factions based on virtues, Tris learns she's Divergent, and discovers a plot to destroy Divergents, Tris must find out what makes Divergents dangerous before it's too late.</div>
+                                    <div class="boxtext">A world divided by factions based on virtues, Tris learns she's
+                                        Divergent, and discovers a plot to destroy Divergents, Tris must find out what
+                                        makes Divergents dangerous before it's too late.</div>
                                 </div>
                             </div>
-                        <p class="title">Divergent</p>
-                        <p class="genre">Action, Sci-Fi</p>
+                            <p class="title">Divergent</p>
+                            <p class="genre">Action, Sci-Fi</p>
                     </li>
                     <li>
                         <div class="container">
-                            <img src="https://image.tmdb.org/t/p/original/5Y0AINkH7xDqmuxJXUQdPbtyrub.jpg"
-                                alt="Avatar">
+                            <img src="https://image.tmdb.org/t/p/original/5Y0AINkH7xDqmuxJXUQdPbtyrub.jpg" alt="Avatar">
                             <div class="overlay">
                                 <div style="padding-top:15px">
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
@@ -450,11 +577,13 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">Two lifelong friends find themselves at an impasse when one abruptly ends their relationship, with alarming consequences for both of them.</div>
+                                    <div class="boxtext">Two lifelong friends find themselves at an impasse when one
+                                        abruptly ends their relationship, with alarming consequences for both of them.
+                                    </div>
                                 </div>
                             </div>
-                        <p class="title">The Banshees of Inisherin</p>
-                        <p class="genre">Comedy, Drama</p>
+                            <p class="title">The Banshees of Inisherin</p>
+                            <p class="genre">Comedy, Drama</p>
                     </li>
                 </ul>
 
@@ -472,16 +601,17 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
-                                    <div class="boxtext">With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.</div>
+                                    <div class="boxtext">With his wife's disappearance having become the focus of an
+                                        intense media circus, a man sees the spotlight turned on him when it's suspected
+                                        that he may not be innocent.</div>
                                 </div>
                             </div>
-                        <p class="title">Gone Girl</p>
-                        <p class="genre">Thriller, Mystery</p>
+                            <p class="title">Gone Girl</p>
+                            <p class="genre">Thriller, Mystery</p>
                     </li>
                     <li>
                         <div class="container">
-                            <img src="https://image.tmdb.org/t/p/original/ode14q7WtDugFDp78fo9lCsmay9.jpg"
-                                alt="Avatar">
+                            <img src="https://image.tmdb.org/t/p/original/ode14q7WtDugFDp78fo9lCsmay9.jpg" alt="Avatar">
                             <div class="overlay">
                                 <div style="padding-top:15px">
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
@@ -489,16 +619,17 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">Thomas is deposited in a community of boys after his memory is erased, soon learning they're all trapped in a maze that will require him to join forces with fellow "runners" for a shot at escape.</div>
+                                    <div class="boxtext">Thomas is deposited in a community of boys after his memory is
+                                        erased, soon learning they're all trapped in a maze that will require him to
+                                        join forces with fellow "runners" for a shot at escape.</div>
                                 </div>
                             </div>
-                        <p class="title">The Maze Runner</p>
-                        <p class="genre">Action, Sci-fi</p>
+                            <p class="title">The Maze Runner</p>
+                            <p class="genre">Action, Sci-fi</p>
                     </li>
                     <li>
                         <div class="container">
-                            <img src="https://image.tmdb.org/t/p/original/xwbFEPubG4wroLDZdmTWRGNnnWf.jpg"
-                                alt="Avatar">
+                            <img src="https://image.tmdb.org/t/p/original/xwbFEPubG4wroLDZdmTWRGNnnWf.jpg" alt="Avatar">
                             <div class="overlay">
                                 <div style="padding-top:15px">
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
@@ -506,11 +637,12 @@
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">A rebellious Malibu princess is shipped off to a strict English boarding school by her father.</div>
+                                    <div class="boxtext">A rebellious Malibu princess is shipped off to a strict English
+                                        boarding school by her father.</div>
                                 </div>
                             </div>
-                        <p class="title">Wild Child</p>
-                        <p class="genre">Comedy, Romance</p>
+                            <p class="title">Wild Child</p>
+                            <p class="genre">Comedy, Romance</p>
                     </li>
                     <li>
                         <div class="container">
@@ -523,15 +655,17 @@
                                     <span class="fa fa-star checked" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
                                     <span class="fa fa-star" alt="" class="boxtext"></span>
-                                    <div class="boxtext">After swapping bodies with a deranged serial killer, a high-school senior discovers that she has fewer than 24 hours before the change becomes permanent.</div>
+                                    <div class="boxtext">After swapping bodies with a deranged serial killer, a
+                                        high-school senior discovers that she has fewer than 24 hours before the change
+                                        becomes permanent.</div>
                                 </div>
                             </div>
-                        <p class="title">Freaky</p>
-                        <p class="genre">Horror, Slasher</p>
+                            <p class="title">Freaky</p>
+                            <p class="genre">Horror, Slasher</p>
                     </li>
                 </ul>
 
-                 <!-- endre språk knapp, visste ikke hvor jeg skulle putte den -->
+                <!-- endre språk knapp, visste ikke hvor jeg skulle putte den -->
 
 
                 <div class="container">
@@ -550,7 +684,7 @@
                 </div>
 
 
-                 <!-- Nederste navigation bar, kun for utseende -->
+                <!-- Nederste navigation bar, kun for utseende -->
 
 
 
@@ -571,18 +705,47 @@
                             <a class="link" href="#">
                                 <i class="fa fa-heart fa-2x"></i>
                             </a>
-                            
+
                         </li>
                         <li class="item">
                             <a class="link" href="#">
                                 <i class="fa fa-bell fa-2x"></i>
                             </a>
                         </li>
-                        <li class="item">
-                            <a class="link" href="#">
-                                <i class="fa fa-user fa-2x"></i>
-                            </a>
-                        </li>
+
+                        <!-- login form -->
+
+                        <button onclick="document.getElementById('id01').style.display='block'"
+                            style="width:auto;"><i class="fa fa-user fa-2x"></i></button>
+
+                        <div id="id01" class="modal">
+
+                            <form class="modal-content animate" action="/action_page.php" method="post">
+                                <div class="imgcontainer">
+                                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                                        title="Close Modal">&times;</span>
+                                </div>
+
+                                <div class="container">
+                                    <label for="uname"><b>Username</b></label>
+                                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                    <label for="psw"><b>Password</b></label>
+                                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                    <button type="submit">Login</button>
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                                    </label>
+                                </div>
+
+                                <div class="container" style="background-color:#ddd">
+                                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn">Cancel</button>
+                                    <span class="psw">Forgot <a href="#">password?</a></span>
+                                </div>
+                            </form>
+                        </div>
                     </ul>
                 </nav>
 
@@ -590,8 +753,7 @@
 
 
                 <script>
-
-                     // her er scriptet for språk // 
+                    // her er scriptet for språk // 
 
 
                     function toggleLanguage(language) {
@@ -609,10 +771,10 @@
                     const changeLangBtn = document.getElementById("changeLanguageBtn");
 
                     let language = "no"
-                    
+
 
                     import Dictionary from "/Dictionary.mjs";
-                    const dic = new Dictionary(["test/lan/en.json","test/lan/no.json"])
+                    const dic = new Dictionary(["test/lan/en.json", "test/lan/no.json"])
                     await dic.setLanguage(language);
 
                     const elementsToTranslate = document.querySelectorAll("[data-translate]");
@@ -624,8 +786,19 @@
 
                         if (target !== undefined) {
                             element.setAttribute(target, translation);
-                        } else  {
+                        } else {
                             element.innerText = translation;
+                        }
+                    }
+
+                    // login form //
+
+                    var modal = document.getElementById('id01');
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function (event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
                         }
                     }
                 </script>
