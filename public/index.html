@@ -243,32 +243,6 @@
             transition: all 0.2s linear;
         }
 
-        .navigation-bar .list-items .pointer::before,
-        .navigation-bar .list-items .pointer::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            width: 100%;
-        }
-
-        .navigation-bar .list-items .pointer::before {
-            top: 0;
-            border-bottom: 8px solid var(--main-color);
-            border-radius: 0 0 30px 30px;
-        }
-
-        .navigation-bar .list-items .pointer::after {
-            bottom: 0;
-            border-top: 8px solid var(--main-color);
-            border-radius: 30px 30px 0 0;
-        }
-
-        .navigation-bar .list-items .item {
-            flex: 1 1 0px;
-            position: relative;
-            z-index: 2;
-        }
-
         .navigation-bar .list-items .item .link {
             display: inline-block;
             height: 4rem;
@@ -561,7 +535,7 @@
 
 
                 <div class="container">
-                    <h1 id="description">Show English Text</h1>
+                    <h5 id="description">Show english text</h5>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Language
                             Option
@@ -597,6 +571,7 @@
                             <a class="link" href="#">
                                 <i class="fa fa-heart fa-2x"></i>
                             </a>
+                            
                         </li>
                         <li class="item">
                             <a class="link" href="#">
@@ -624,10 +599,35 @@
                         if (language === "Norsk") {
                             description.innerHTML = "Vis norsk tekst";
                         } else {
-                            description.innerHTML = "Show English Text";
+                            description.innerHTML = "Show english text";
                         }
                     }
+
+                    // scriptet for koden christian brukte //
+
+
+                    const changeLangBtn = document.getElementById("changeLanguageBtn");
+
+                    let language = "no"
                     
+
+                    import Dictionary from "/Dictionary.mjs";
+                    const dic = new Dictionary(["test/lan/en.json","test/lan/no.json"])
+                    await dic.setLanguage(language);
+
+                    const elementsToTranslate = document.querySelectorAll("[data-translate]");
+
+                    for (const element of elementsToTranslate) {
+                        const translateKey = element.getAttribute("data-translate");
+                        const translation = dic.get(translateKey);
+                        const target = element.getAttribute("data-target");
+
+                        if (target !== undefined) {
+                            element.setAttribute(target, translation);
+                        } else  {
+                            element.innerText = translation;
+                        }
+                    }
                 </script>
 
 </body>
