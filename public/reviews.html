@@ -1,357 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Film App</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Film App</title>
 
-<style type="text/css">
-        
-     * {box-sizing: border-box;}
-
-     body {
-
-min-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #111111;
-color: #fff;
-margin: 0;
-font-family: Arial, Helvetica, sans-serif;
-text-align: center;
-
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a.active {
-  background-color: #000;
-  color: white;
-}
-
-.topnav .search-container {
-  float: center;
-}
-
-.topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
-}
-
-.topnav .search-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav .search-container {
-    float: none;
-  }
-  .topnav a, .topnav input[type=text], .topnav .search-container button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-}
-
-.cover {
-	width: 100%;
-	display: block;
-	}
-
-.title {
-	font-weight: bold;
-	font-size: 13px;
-	margin-bottom: 4px;
-	}
-
-.genre {
-	color: #999;
-	font-size: 12px;
-	}
-
-img {
-	width: 130px;
-	height: 195px;
-	margin: 0 auto 5px auto;
-	cursor: pointer;
-	}
-
-.list {
-	margin: 0px;
-	margin-right: 0;
-	display: inline-flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
     }
 
-li {
-	flex: 0 0 130px;
-	padding-bottom: 0px;
-	margin-right: 20px;
-	position: relative;
-     }
+    body {
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  
-}
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #111111;
+      color: #fff;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
 
-.hidden {
-            display: none;
-        }
+    }
+
+    .topnav {
+      overflow: hidden;
+      background-color: #e9e9e9;
+    }
+
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a.active {
+      background-color: #000;
+      color: white;
+    }
+
+    .topnav .search-container {
+      float: center;
+    }
+
+    .topnav input[type=text] {
+      padding: 6px;
+      margin-top: 8px;
+      font-size: 17px;
+      border: none;
+    }
+
+    .topnav .search-container button {
+      float: right;
+      padding: 6px 10px;
+      margin-top: 8px;
+      margin-right: 16px;
+      background: #ddd;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav .search-container {
+        float: none;
+      }
+
+      .topnav a,
+      .topnav input[type=text],
+      .topnav .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+      }
+
+      .topnav input[type=text] {
+        border: 1px solid #ccc;
+      }
+    }
+
+    .cover {
+      width: 100%;
+      display: block;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .genre {
+      color: #999;
+      font-size: 12px;
+    }
+
+    img {
+      width: 130px;
+      height: 195px;
+      margin: 0 auto 5px auto;
+      cursor: pointer;
+    }
+
+    .list {
+      margin: 0px;
+      margin-right: 0;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    li {
+      flex: 0 0 130px;
+      padding-bottom: 0px;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+    }
+
+    .hidden {
+      display: none;
+    }
 
 
-        html {
-  box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-body,td,th,p{
-	color: #333;
-  font: 16px/1.6 Arial, Helvetica, sans-serif;
-}
-body {
-	background-color: #fdfdfd;
-	margin: 0;
-	position:relative;
-}
-h2 {
-  display: inline-block;
-}
-#review-add-btn {
-  padding: 0;
-  font-size: 1.6em;
-  cursor: pointer;
-  left: -50px;
-}
-/*  Review Form  */
-#modal {
-  position: absolute;
-  left: 10vh;
-  top: 10vh; 
-  
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #666;
-  border-radius: 10px;
-  opacity: 0;
-  transition: all .3s;
-  overflow: hidden;
-  background-color: #eee;
-  display: none;
-}
-#modal.show {
-  opacity: 1;
-  display: flex;
-}
-.modal-overlay {
-  width: 100%;
-  height: 100%;
-  z-index: 2; 
-  background-color: #000;
-  opacity: 0;
-  transition: all .3s;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  margin: 0;
-  padding: 0;
-}
-.modal-overlay.show {
-  display: block;
-  opacity: 0.5;  
-}
-#modal .close-btn {
-  align-self: flex-end;
-  font-size: 1.4em;
-  margin: 8px 8px 0;
-  padding: 0 8px;
-  cursor: pointer;
-}
-form {
-  max-width: 900px;
-  padding: 0 20px 20px 20px;
-}
+    html {
+      box-sizing: border-box;
+    }
 
-input,
-select, .rate, textarea, button {
-  background: #f9f9f9;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  box-shadow: inset 0 1px 1px #e1e1e1;
-  font-size: 16px;
-  padding: 8px;
-}
-input[type="radio"] {
-  box-shadow: none;
-}
-button {
-  min-width: 48px;
-  min-height: 48px;
-}
-button:hover {
-  border: 1px solid #ccc;
-  background-color: #fff;
-}
-button#review-add-btn, 
-button.close-btn, 
-button#submit-review-btn {
-  min-height: 40px;
-}
-button#submit-review-btn {
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0 16px;
-}
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
 
-.fieldset {
-  margin-top: 20px;
-}
-.right {
-  align-self: flex-end;
-}
-#review-form-container {
-  width: 100%;
-  padding: 0 20px 26px;
-  color: #333;
-  overflow-y: auto;
-}
-#review-form-container h2 {
-  margin: 0 0 0 6px;
-}
-#review-form {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-}
-#review-form label, #review-form input {
-  display: block;
-}
-#review-form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+    body,
+    td,
+    th,
+    p {
+      color: #333;
+      font: 16px/1.6 Arial, Helvetica, sans-serif;
+    }
 
-#review-form .rate label, #review-form .rate input,
-#review-form .rate1 label, #review-form .rate1 input {
-  display: inline-block;
-}
+    body {
+      background-color: #fdfdfd;
+      margin: 0;
+      position: relative;
+    }
 
-.rate {
-  height: 36px;
-  display: inline-flex;
-  flex-direction: row-reverse;
-  align-items: flex-start;
-  justify-content: flex-end;
-}
-#review-form .rate > label {
-  margin-bottom: 0;
-  margin-top: -5px;
-  height: 30px;
-}
-.rate:not(:checked) > input {
-  top: -9999px;
-  margin-left: -24px;
-  width: 20px;
-  padding-right: 14px;
-  z-index: -10;
-}
-.rate:not(:checked) > label {
-  float:right;
-  width:1em;
-  overflow:hidden;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:30px;
-  color:#ccc;
-}
+    h2 {
+      display: inline-block;
+    }
 
-.rate2 {
-  float: none;
-}
-.rate:not(:checked) > label::before {
-  content: '★ ';
-  position: relative;
-  top: -10px;
-  left: 2px;
-}
-.rate > input:checked ~ label {
-  color: #ffc700;
-}
-.rate > input:checked:focus + label, .rate > input:focus + label {
-  outline: -webkit-focus-ring-color auto 5px;
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-  color: #deb217;
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-  color: #c59b08;
-}
-#submit-review {
-  align-self: flex-end;
-}
-        
-</style>
+    #review-add-btn {
+      padding: 0;
+      font-size: 1.6em;
+      cursor: pointer;
+      left: -50px;
+    }
+
+    /*  Review Form  */
+    #modal {
+      position: absolute;
+      left: 10vh;
+      top: 10vh;
+
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #666;
+      border-radius: 10px;
+      opacity: 0;
+      transition: all .3s;
+      overflow: hidden;
+      background-color: #eee;
+      display: none;
+    }
+
+    #modal.show {
+      opacity: 1;
+      display: flex;
+    }
+
+    .modal-overlay {
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: #000;
+      opacity: 0;
+      transition: all .3s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .modal-overlay.show {
+      display: block;
+      opacity: 0.5;
+    }
+
+    #modal .close-btn {
+      align-self: flex-end;
+      font-size: 1.4em;
+      margin: 8px 8px 0;
+      padding: 0 8px;
+      cursor: pointer;
+    }
+
+    form {
+      max-width: 900px;
+      padding: 0 20px 20px 20px;
+    }
+
+    input,
+    select,
+    .rate,
+    textarea,
+    button {
+      background: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 1px #e1e1e1;
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    input[type="radio"] {
+      box-shadow: none;
+    }
+
+    button {
+      min-width: 48px;
+      min-height: 48px;
+    }
+
+    button:hover {
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    button#review-add-btn,
+    button.close-btn,
+    button#submit-review-btn {
+      min-height: 40px;
+    }
+
+    button#submit-review-btn {
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 16px;
+    }
+
+    .fieldset {
+      margin-top: 20px;
+    }
+
+    .right {
+      align-self: flex-end;
+    }
+
+    #review-form-container {
+      width: 100%;
+      padding: 0 20px 26px;
+      color: #333;
+      overflow-y: auto;
+    }
+
+    #review-form-container h2 {
+      margin: 0 0 0 6px;
+    }
+
+    #review-form {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+    }
+
+    #review-form label,
+    #review-form input {
+      display: block;
+    }
+
+    #review-form label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    #review-form .rate label,
+    #review-form .rate input,
+    #review-form .rate1 label,
+    #review-form .rate1 input {
+      display: inline-block;
+    }
+
+    .rate {
+      height: 36px;
+      display: inline-flex;
+      flex-direction: row-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    #review-form .rate>label {
+      margin-bottom: 0;
+      margin-top: -5px;
+      height: 30px;
+    }
+
+    .rate:not(:checked)>input {
+      top: -9999px;
+      margin-left: -24px;
+      width: 20px;
+      padding-right: 14px;
+      z-index: -10;
+    }
+
+    .rate:not(:checked)>label {
+      float: right;
+      width: 1em;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+      font-size: 30px;
+      color: #ccc;
+    }
+
+    .rate2 {
+      float: none;
+    }
+
+    .rate:not(:checked)>label::before {
+      content: '★ ';
+      position: relative;
+      top: -10px;
+      left: 2px;
+    }
+
+    .rate>input:checked~label {
+      color: #ffc700;
+    }
+
+    .rate>input:checked:focus+label,
+    .rate>input:focus+label {
+      outline: -webkit-focus-ring-color auto 5px;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+      color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+      color: #c59b08;
+    }
+
+    #submit-review {
+      align-self: flex-end;
+    }
+  </style>
 
 </head>
 
 <body>
 
 
-    <div class="topnav">
-        <a href="./index.html">Home</a>
-        <a class="active" href="./reviews.html">Reviews</a>
-        <div style="padding-left:16px"> 
-          <h2>Add Review</h2>
+  <div class="topnav">
+    <a href="./index.html">Home</a>
+    <a class="active" href="./reviews.html">Reviews</a>
+    <div style="padding-left:16px">
+      <h2>Add Review</h2>
       <button id="review-add-btn" aria-label="add review" title="Add Review"></button>
       <div id="modal" role="dialog" aria-modal="true" aria-labelledby="add-review-header" class="">
         <button class="close-btn" aria-label="close" title="Close">x</button>
@@ -365,7 +411,8 @@ button#submit-review-btn {
             <div class="fieldset">
               <label>Rating</label>
               <div class="rate">
-                <input type="radio" id="star5" name="rate" value="5" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)" required="">
+                <input type="radio" id="star5" name="rate" value="5" onkeydown="navRadioGroup(event)"
+                  onfocus="setFocus(event)" required="">
                 <label for="star5" title="5 stars">5 stars</label>
                 <input type="radio" id="star4" name="rate" value="4" onkeydown="navRadioGroup(event)">
                 <label for="star4" title="4 stars">4 stars</label>
@@ -373,11 +420,12 @@ button#submit-review-btn {
                 <label for="star3" title="3 stars">3 stars</label>
                 <input type="radio" id="star2" name="rate" value="2" onkeydown="navRadioGroup(event)">
                 <label for="star2" title="2 stars">2 stars</label>
-                <input type="radio" id="star1" name="https://codepen.io/pen/rate" value="1" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)">
+                <input type="radio" id="star1" name="https://codepen.io/pen/rate" value="1"
+                  onkeydown="navRadioGroup(event)" onfocus="setFocus(event)">
                 <label for="star1" title="1 star">1 star</label>
               </div>
             </div>
-      
+
             <div class="fieldset">
               <label for="reviewComments">Comments</label>
               <textarea name="reviewComments" id="reviewComments" cols="20" rows="5" required=""></textarea>
@@ -389,214 +437,219 @@ button#submit-review-btn {
         </div>
       </div>
       <div class="modal-overlay"></div>
+    </div>
+
+
+
+
+
+
+
+    <div class="sectionText">Recent Reviews</div>
+    <div class="reviews-grid">
+
+      <div class="review">
+        <h4>Elena</h4>
+        <p>Movie: John Wick 4</p>
+        <p>Genre: Action</p>
+        <p>Rating: 4.5/5</p>
+        <p>Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="review">
+        <h4>Helen</h4>
+        <p>Book: When Harry met Sally</p>
+        <p>Genre: Romance, Drama</p>
+        <p>Rating: 3.2/5</p>
+        <p>Text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div class="review">
+        <h4>Dylan</h4>
+        <p>Movie: The Hunger Games</p>
+        <p>Genre: Action</p>
+        <p>Rating: 4/5</p>
+        <p>Text: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.</p>
       </div>
 
-      
-
-      
+    </div>
 
 
 
-<div class="sectionText">Recent Reviews</div>
-<div class="reviews-grid">
-  
-  <div class="review">
-    <h4>Elena</h4>
-    <p>Movie: John Wick 4</p>
-    <p>Genre: Action</p>
-    <p>Rating: 4.5/5</p>
-    <p>Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <div class="review">
-    <h4>Helen</h4>
-    <p>Book: When Harry met Sally</p>
-    <p>Genre: Romance, Drama</p>
-    <p>Rating: 3.2/5</p>
-    <p>Text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
-  <div class="review">
-    <h4>Dylan</h4>
-    <p>Movie: The Hunger Games</p>
-    <p>Genre: Action</p>
-    <p>Rating: 4/5</p>
-    <p>Text: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
-  
-</div> 
 
-
-    
-    
 
     <script>
-let focusedElementBeforeModal;
-const modal = document.getElementById('modal');
-const modalOverlay = document.querySelector('.modal-overlay');
+      let focusedElementBeforeModal;
+      const modal = document.getElementById('modal');
+      const modalOverlay = document.querySelector('.modal-overlay');
 
-window.onload = () => {
-  const addReview = document.getElementById('review-add-btn');
-  addReview.id = 'review-add-btn';
-  addReview.innerHTML = '+';
-  addReview.setAttribute('aria-label', 'add review');
-  addReview.title = 'Add Review';
-  addReview.addEventListener('click', openModal);
-  addReview.click();
-} 
+      window.onload = () => {
+        const addReview = document.getElementById('review-add-btn');
+        addReview.id = 'review-add-btn';
+        addReview.innerHTML = '+';
+        addReview.setAttribute('aria-label', 'add review');
+        addReview.title = 'Add Review';
+        addReview.addEventListener('click', openModal);
+        addReview.click();
+      }
 
-const openModal = () => {
-  // Save current focus
-  focusedElementBeforeModal = document.activeElement;
+      const openModal = () => {
+        // Save current focus
+        focusedElementBeforeModal = document.activeElement;
 
-  // Listen for and trap the keyboard
-  modal.addEventListener('keydown', trapTabKey);
+        // Listen for and trap the keyboard
+        modal.addEventListener('keydown', trapTabKey);
 
-  // Listen for indicators to close the modal
-  modalOverlay.addEventListener('click', closeModal);
-  // Close btn
-  const closeBtn = document.querySelector('.close-btn');
-  closeBtn.addEventListener('click', closeModal);
+        // Listen for indicators to close the modal
+        modalOverlay.addEventListener('click', closeModal);
+        // Close btn
+        const closeBtn = document.querySelector('.close-btn');
+        closeBtn.addEventListener('click', closeModal);
 
-  // submit form
-  const form = document.getElementById('review-form');
-  form.addEventListener('submit', submitAddReview, false);
+        // submit form
+        const form = document.getElementById('review-form');
+        form.addEventListener('submit', submitAddReview, false);
 
-  // Find all focusable children
-  var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
-  var focusableElements = modal.querySelectorAll(focusableElementsString);
-  // Convert NodeList to Array
-  focusableElements = Array.prototype.slice.call(focusableElements);
+        // Find all focusable children
+        var focusableElementsString =
+          'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+        var focusableElements = modal.querySelectorAll(focusableElementsString);
+        // Convert NodeList to Array
+        focusableElements = Array.prototype.slice.call(focusableElements);
 
-  var firstTabStop = focusableElements[0];
-  var lastTabStop = focusableElements[focusableElements.length - 1];
+        var firstTabStop = focusableElements[0];
+        var lastTabStop = focusableElements[focusableElements.length - 1];
 
-  // Show the modal and overlay
-  modal.classList.add('show');
-  modalOverlay.classList.add('show');
+        // Show the modal and overlay
+        modal.classList.add('show');
+        modalOverlay.classList.add('show');
 
-  // Focus first child
-  // firstTabStop.focus();
-  const reviewName = document.getElementById('reviewName');
-  reviewName.focus();
+        // Focus first child
+        // firstTabStop.focus();
+        const reviewName = document.getElementById('reviewName');
+        reviewName.focus();
 
-  function trapTabKey(e) {
-    // Check for TAB key press
-    if (e.keyCode === 9) {
+        function trapTabKey(e) {
+          // Check for TAB key press
+          if (e.keyCode === 9) {
 
-      // SHIFT + TAB
-      if (e.shiftKey) {
-        if (document.activeElement === firstTabStop) {
-          e.preventDefault();
-          lastTabStop.focus();
+            // SHIFT + TAB
+            if (e.shiftKey) {
+              if (document.activeElement === firstTabStop) {
+                e.preventDefault();
+                lastTabStop.focus();
+              }
+
+              // TAB
+            } else {
+              if (document.activeElement === lastTabStop) {
+                e.preventDefault();
+                firstTabStop.focus();
+              }
+            }
+          }
+
+          // ESCAPE
+          if (e.keyCode === 27) {
+            closeModal();
+          }
         }
+      };
 
-      // TAB
-      } else {
-        if (document.activeElement === lastTabStop) {
-          e.preventDefault();
-          firstTabStop.focus();
+      const submitAddReview = (e) => {
+        // console.log(e);
+        console.log('Form subbmitted!');
+        e.preventDefault();
+        closeModal();
+      };
+
+      const closeModal = () => {
+        // Hide the modal and overlay
+        modal.classList.remove('show');
+        modalOverlay.classList.remove('show');
+
+        const form = document.getElementById('review-form');
+        form.reset();
+        // Set focus back to element that had it before the modal was opened
+        focusedElementBeforeModal.focus();
+      };
+
+      const setFocus = (evt) => {
+        const rateRadios = document.getElementsByName('rate');
+        const rateRadiosArr = Array.from(rateRadios);
+        const anyChecked = rateRadiosArr.some(radio => {
+          return radio.checked === true;
+        });
+        // console.log('anyChecked', anyChecked);
+        if (!anyChecked) {
+          const star1 = document.getElementById('star1');
+          star1.focus();
+          // star1.checked = true;
         }
-      }
-    }
+      };
 
-    // ESCAPE
-    if (e.keyCode === 27) {
-      closeModal();
-    }
-  }
-};
+      const navRadioGroup = (evt) => {
+        // console.log('key', evt.key, 'code', evt.code, 'which', evt.which);
+        // console.log(evt);
 
-const submitAddReview = (e) => {
-  // console.log(e);
-  console.log('Form subbmitted!');
-  e.preventDefault();
-  closeModal();
-};
+        const star1 = document.getElementById('star1');
+        const star2 = document.getElementById('star2');
+        const star3 = document.getElementById('star3');
+        const star4 = document.getElementById('star4');
+        const star5 = document.getElementById('star5');
 
-const closeModal = () => {
-  // Hide the modal and overlay
-  modal.classList.remove('show');
-  modalOverlay.classList.remove('show');
-
-  const form = document.getElementById('review-form');
-  form.reset();
-  // Set focus back to element that had it before the modal was opened
-  focusedElementBeforeModal.focus();
-};
-
-const setFocus = (evt) => {
-  const rateRadios = document.getElementsByName('rate');
-  const rateRadiosArr = Array.from(rateRadios);
-  const anyChecked = rateRadiosArr.some(radio => { return radio.checked === true; });
-  // console.log('anyChecked', anyChecked);
-  if (!anyChecked) {
-    const star1 = document.getElementById('star1');
-    star1.focus();
-    // star1.checked = true;
-  }
-};
-
-const navRadioGroup = (evt) => {
-  // console.log('key', evt.key, 'code', evt.code, 'which', evt.which);
-  // console.log(evt);
-  
-  const star1 = document.getElementById('star1');  
-  const star2 = document.getElementById('star2');  
-  const star3 = document.getElementById('star3');  
-  const star4 = document.getElementById('star4');  
-  const star5 = document.getElementById('star5');  
-
-  if (['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(evt.key)) {
-    evt.preventDefault();
-    // console.log('attempting return');
-    if (evt.key === 'ArrowRight' || evt.key === 'ArrowDown') {
-      switch(evt.target.id) {
-        case 'star1':
-          star2.focus();
-          star2.checked = true;
-          break;
-        case 'star2':
-          star3.focus();
-          star3.checked = true;
-          break;
-        case 'star3':
-          star4.focus();
-          star4.checked = true;
-          break;
-        case 'star4':
-          star5.focus();
-          star5.checked = true;
-          break;
-        case 'star5':
-          star1.focus();
-          star1.checked = true;
-          break;
-      }
-    } else if (evt.key === 'ArrowLeft' || evt.key === 'ArrowUp') {
-      switch(evt.target.id) {
-        case 'star1':
-          star5.focus();
-          star5.checked = true;
-          break;
-        case 'star2':
-          star1.focus();
-          star1.checked = true;
-          break;
-        case 'star3':
-          star2.focus();
-          star2.checked = true;
-          break;
-        case 'star4':
-          star3.focus();
-          star3.checked = true;
-          break;
-        case 'star5':
-          star4.focus();
-          star4.checked = true;
-          break;
-      }
-    }
-  }
-};
+        if (['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(evt.key)) {
+          evt.preventDefault();
+          // console.log('attempting return');
+          if (evt.key === 'ArrowRight' || evt.key === 'ArrowDown') {
+            switch (evt.target.id) {
+              case 'star1':
+                star2.focus();
+                star2.checked = true;
+                break;
+              case 'star2':
+                star3.focus();
+                star3.checked = true;
+                break;
+              case 'star3':
+                star4.focus();
+                star4.checked = true;
+                break;
+              case 'star4':
+                star5.focus();
+                star5.checked = true;
+                break;
+              case 'star5':
+                star1.focus();
+                star1.checked = true;
+                break;
+            }
+          } else if (evt.key === 'ArrowLeft' || evt.key === 'ArrowUp') {
+            switch (evt.target.id) {
+              case 'star1':
+                star5.focus();
+                star5.checked = true;
+                break;
+              case 'star2':
+                star1.focus();
+                star1.checked = true;
+                break;
+              case 'star3':
+                star2.focus();
+                star2.checked = true;
+                break;
+              case 'star4':
+                star3.focus();
+                star3.checked = true;
+                break;
+              case 'star5':
+                star4.focus();
+                star4.checked = true;
+                break;
+            }
+          }
+        }
+      };
     </script>
 </body>
+
 </html>
